@@ -6,7 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+body{
+  font-family: 'NHaaGroteskDSPro-65MD' !important;
+  /* @import url(//db.onlinewebfonts.com/c/a28596ff72fb48a2f9fa424f5004f142?family=); */
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -35,4 +38,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+#carousel{
+  max-height: 500px;
 }
