@@ -30,7 +30,8 @@ export default function MyCart() {
         if(response.status===200)
         {
             dispatch({type:"DROP"})
-        }
+          }
+          window.alert("Your Order is Placed Successfully!")
     }
     let totalprice=data.reduce((total,food)=>total+food.price,0)
   return (

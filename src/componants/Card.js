@@ -13,16 +13,19 @@ export default function Card(props) {
         let food=[];
         
     for (const item of data) {
-      if (item.id === foodItem._id) {
+      if (item.id === foodItem._id&&item.size===size) {
         food = item;
 
         break;
       }
     }
-    console.log(food.size===size)
+    // console.log(food,size)
+    // console.log()
+    // console.log(food.size,data,"YES");
+    // console.log(food.size===size)
     if (food !== []) {
         if (food.size === size) {
-          await dispatch({ type: "UPDATE", id: foodItem._id, price: finalPrice, qty: qty })
+          await dispatch({ type: "UPDATE", id: foodItem._id, price: finalPrice, qty: qty, size:size })
         //   console.log(qty)
           return
         }
