@@ -21,9 +21,9 @@ async (req,resp)=>{
 
     try {
          
-        let email1=req.body.email;
+        let email=req.body.email;
         // console.log(User);
-        let userdata=await User.find({email1});
+        let userdata=await User.findOne({email});
         if(!userdata)
         {
             
@@ -63,6 +63,7 @@ async (req,resp)=>{
     let email=req.body.email;
     try {
         const Userdata=await User.findOne({email});
+        // console.log(User)
         if(!Userdata)
         {
             return resp.status(400).json({ errors: "Try Loging with correct credentials" });
