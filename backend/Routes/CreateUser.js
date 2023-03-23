@@ -20,13 +20,27 @@ async (req,resp)=>{
         const securepass=await bcrypt.hash(req.body.password,salt)
 
     try {
-        await User.create({
-            name:req.body.name,
-            email:req.body.email,
-            location:req.body.location,
-            password:securepass
-        })
-        resp.json({success:true});
+         
+        let email1=req.body.email;
+        // console.log(User);
+        let userdata=await User.find({email1});
+        if(!userdata)
+        {
+            
+            await User.create({
+                name:req.body.name,
+                email:req.body.email,
+                location:req.body.location,
+                password:securepass
+            })
+            resp.json({success:true});
+        }
+        else
+        {
+                return resp.status(400).json({error:"User already exist please login!"})
+        }
+       
+        
     } catch (error) {
         console.log(error);
         resp.json({success:false});

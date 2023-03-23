@@ -6,7 +6,7 @@ import Footer from '../componants/Footer';
 export default function Signup() {
   let navigate=useNavigate();
   const [usercred,setusercred]=useState({name:"",email:"",password:"",location:""})
-
+let [xx,setxx]=useState(true);
     const handlesubmit= async(e)=>{
             e.preventDefault();
             const response=await fetch('http://localhost:5000/api/createuser',{
@@ -17,9 +17,13 @@ export default function Signup() {
                 body:JSON.stringify({name:usercred.name,email:usercred.email,password:usercred.password,location:usercred.location})
             });
             const resp=await response.json();
-            console.log(resp);
-            if(!resp.success)
-            alert("Enter valid credentials");
+            
+            console.log(resp.status);
+            if(!resp.success){
+              setxx({xx:false})
+              // console.log(xx);
+            // alert("Enter valid credentials or User already exists!");
+          }
             if(resp.success) {
                 navigate('/login')
             }
@@ -62,19 +66,25 @@ export default function Signup() {
                   {/* <label className="form-label" for="form3Example4cg">Password</label> */}
                 </div>
 
-                <div className="form-outline mb-4">
+                <div className="form-outline mb-1">
                     
                   <input type="text" className="form-control" name='location' value={usercred.location} onChange={changehandler} placeholder="Location"/>
                      {/* <label className="form-label" for="form3Example4cdg">Location</label> */}
                 </div>
-
+                <div>
+      {xx.xx===false?
+      
+      <div className="d-flex mb-2 text-danger"
+      style={{fontSize:"12px"}}> ⓘ Enter valid details or User already exist!</div>
+      :""}
+             </div>
                 <div className="form-check d-flex justify-content-center mb-5">
                   <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" required="true" />
                   <label className="form-check-label" for="form2Example3g">
                     I agree all statements in <a href="#!" className="text-body"><u>Terms of service</u></a>
                   </label>
                 </div>
-
+ 
                 <div className="d-flex justify-content-center">
                   <button type="submit"
                     className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
@@ -86,6 +96,7 @@ export default function Signup() {
               </form>
             </div>
               <Footer />
+      
           </div>
         </div>
       </div>

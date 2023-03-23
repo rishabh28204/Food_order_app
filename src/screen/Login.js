@@ -5,6 +5,7 @@ import Navbar from '../componants/Navbar';
 import Footer from '../componants/Footer';
 export default function Login() {
   let navigate=useNavigate();
+  let [xx,setxx]=useState(true);
   const [usercred,setusercred]=useState({email:"",password:""});
   const handlesubmit= async(e)=>{
     e.preventDefault();
@@ -18,7 +19,7 @@ export default function Login() {
     const resp=await response.json();
     console.log(resp);
     if(!resp.success)
-    alert("Enter valid credentials");
+    setxx({xx:false})
     if(resp.success){ 
       localStorage.setItem("UserEmail",usercred.email);
       localStorage.setItem("authToken",resp.AuthToken);
@@ -56,11 +57,18 @@ const changehandler=(event)=>{
                     {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
                   </div>
 
-                  <div className="form-outline mb-4">
+                  <div className="form-outline mb-1">
                      <input type="password" className="form-control" name='password'  value={usercred.password} onChange={changehandler} placeholder="Password"/>
                     {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
                   </div>
-
+                  
+                  <div>
+      {xx.xx===false?
+      
+      <div className="d-flex mb-2 text-danger"
+      style={{fontSize:"12px"}}> ⓘ Username or Password is invalid !</div>
+      :""}
+             </div>
                   <div className="text-center pt-1 mb-5 pb-1">
                     <button className="btn btn-success btn-block fa-lg mb-3" type="submit">Login</button>
                     <br />
