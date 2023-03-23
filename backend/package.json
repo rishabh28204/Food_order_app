@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     
-    "dev": "nodemon indesx.js",
+    "dev": "node indesx.js",
     "build" : "npm i"
   },
   "author": "Rishabh",
